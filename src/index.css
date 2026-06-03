@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-yellow-300: #FFE082;
+  --color-yellow-400: #FFCA28;
+  --color-yellow-500: #FFC107;
+  --color-yellow-600: #FFB300;
+  --color-yellow-700: #FFA000;
+
+  --color-amber-300: #FFE082;
+  --color-amber-400: #FFCA28;
+  --color-amber-500: #FFC107;
+  --color-amber-600: #FFB300;
+  --color-amber-700: #FFA000;
+
+  /* Dynamically toggle background and card properties via CSS custom properties */
+  --color-black: var(--app-black);
+  --color-neutral-950: var(--app-neutral-950);
+  --color-neutral-900: var(--app-neutral-900);
+  --color-neutral-800: var(--app-neutral-800);
+}
+
+:root {
+  --app-black: #000000;
+  --app-neutral-950: #0a0a0a;
+  --app-neutral-900: #171717;
+  --app-neutral-800: #262626;
+}
+
+/* Deep Charcoal Variation */
+.theme-charcoal {
+  --app-black: #111113;
+  --app-neutral-950: #1a1a20;
+  --app-neutral-900: #24242c;
+  --app-neutral-800: #2e2e38;
+}
+
+/* Custom golden gradients and minimalist styles adjusted for Sleek Interface */
+.gold-gradient {
+  background: linear-gradient(135deg, #FFC107 0%, #FFB300 50%, #FFA000 100%);
+}
+
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FFC107 0%, #FFB300 60%, #FFA000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-glow {
+  box-shadow: 0 0 15px rgba(255, 193, 7, 0.15);
+}
+
+.gold-glow-hover:hover {
+  box-shadow: 0 0 25px rgba(255, 193, 7, 0.35);
+}
+
+/* Modern Minimal scrollbar container */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222222;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #FFC107;
+}

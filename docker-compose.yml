@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  # Full-Stack Application Service
+  instem-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: instem_app_container
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://instem_admin:SecureGoldAccent99@postgres-db:5432/instem_db?schema=public
+      - JWT_SECRET=58d343c16dd197472dd96bce72a39a0ff39efdae7e68cfb8ab4ea8eb661
+      - APP_URL=https://instem-live-portal.com
+    depends_on:
+      postgres-db:
+        condition: service_healthy
+    volumes:
+      - instem_app_data:/app/data
+
+  # PostgreSQL Managed Volume Service
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: instem_db_container
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=instem_admin
+      - POSTGRES_PASSWORD=SecureGoldAccent99
+      - POSTGRES_DB=instem_db
+    volumes:
+      - instem_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U instem_admin -d instem_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  instem_db_data:
+    driver: local
+  instem_app_data:
+    driver: local

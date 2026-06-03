@@ -1,0 +1,154 @@
+// prisma/schema.prisma
+// 
+// This is the production-ready Prisma schema representing the core 
+// relation mappings of INSTEM (Internship Management, Monitoring, and Reporting System).
+//
+// Designed for PostgreSQL database hosting on AWS RDS, Render, or Railway.
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  STUDENT
+  COMPANY
+  SCHOOL
+}
+
+enum ApplicationStatus {
+  APPLIED
+  UNDER_REVIEW
+  INTERVIEWING
+  ACCEPTED
+  REJECTED
+}
+
+enum ReportStatus {
+  PENDING
+  APPROVED
+  REVISION_REQUESTED
+}
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  name          String
+  passwordHash  String
+  role          Role           @default(STUDENT)
+  
+  // Student-specific relations and profile keys
+  studentId     String?        @unique
+  department    String?        // Also acts as School Major or academic faculty
+  
+  // Company-specific details
+  companyName   String?
+  
+  // Relations
+  internships   Internship[]   @relation("CompanyInternships")
+  applications  Application[]  @relation("StudentApplications")
+  reports       Report[]       @relation("StudentReports")
+  notifications Notification[] @relation("UserNotifications")
+
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  @@map("users")
+}
+
+model Internship {
+  id           String         @id @default(uuid())
+  title        String
+  companyId    String
+  company      User           @relation("CompanyInternships", fields: [companyId], references: [id], onDelete: Cascade)
+  companyName  String         // Denormalized for high throughput list queries
+  
+  location     String         // e.g., "Remote", "San Francisco, CA"
+  type         String         // e.g., "Full-time", "Part-time"
+  stipend      String         @default("Negotiable")
+  duration     String         @default("3 Months")
+  description  String         @db.Text
+  requirements String[]       // PostgreSQL native text array
+  department   String         // Target major/field (Software Engineering, Data Science)
+  status       String         @default("OPEN") // "OPEN", "CLOSED"
+
+  applications Application[]  @relation("InternshipApplications")
+
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+
+  @@index([companyId])
+  @@index([department])
+  @@map("internships")
+}
+
+model Application {
+  id                 String            @id @default(uuid())
+  internshipId       String
+  internship         Internship        @relation("InternshipApplications", fields: [internshipId], references: [id], onDelete: Cascade)
+  internshipTitle    String
+  
+  companyId          String
+  companyName        String
+  
+  studentId          String
+  student            User              @relation("StudentApplications", fields: [studentId], references: [id], onDelete: Cascade)
+  studentName        String
+  studentEmail       String
+  studentDepartment  String            // Student's software/major branch
+  
+  status             ApplicationStatus @default(APPLIED)
+  coverLetter        String?           @db.Text
+  feedback           String?           @db.Text
+
+  appliedAt          DateTime          @default(now())
+  updatedAt          DateTime          @updatedAt
+
+  @@unique([internshipId, studentId]) // Prevent duplicate entries
+  @@index([studentId])
+  @@index([companyId])
+  @@map("applications")
+}
+
+model Report {
+  id           String       @id @default(uuid())
+  studentId    String
+  student      User         @relation("StudentReports", fields: [studentId], references: [id], onDelete: Cascade)
+  studentName  String
+  
+  companyId    String
+  companyName  String
+  
+  title        String       // e.g., "Week 4 Progress Log"
+  content      String       @db.Text
+  challenges   String       @db.Text
+  hoursLogged  Int          @default(40)
+  status       ReportStatus @default(PENDING)
+  
+  feedback     String?      @db.Text
+  grade        String?      // e.g., "A", "B+", "C"
+
+  submittedAt  DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([studentId])
+  @@index([companyId])
+  @@map("reports")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation("UserNotifications", fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@map("notifications")
+}
