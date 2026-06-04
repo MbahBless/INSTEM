@@ -1002,6 +1002,7 @@ export default function StudentDashboard({ currentUser, onAddNotification, onUse
               <UserSettingsPanel 
                 currentUser={currentUser} 
                 onAddNotification={onAddNotification} 
+                onSettingsSaved={onUserUpdate}
               />
             </div>
           )}

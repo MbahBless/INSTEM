@@ -9,6 +9,7 @@ import SchoolDashboard from "./components/SchoolDashboard";
 import SessionTimeoutManager from "./components/SessionTimeoutManager";
 import { User, Notification } from "./types";
 import { RefreshCw, ShieldCheck } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null);
@@ -177,27 +178,36 @@ export default function App() {
 
             {/* DASHBOARD INTEGRATION ROUTER */}
             {activeTab === "dashboard" && currentUser && (
-              <div className="animate-fadeIn">
-                {currentUser.role === "STUDENT" && (
-                  <StudentDashboard 
-                    currentUser={currentUser} 
-                    onAddNotification={handleAddLocalNotification}
-                    onUserUpdate={setCurrentUser}
-                  />
-                )}
-                {currentUser.role === "COMPANY" && (
-                  <CompanyDashboard 
-                    currentUser={currentUser} 
-                    onAddNotification={handleAddLocalNotification}
-                  />
-                )}
-                {currentUser.role === "SCHOOL" && (
-                  <SchoolDashboard 
-                    currentUser={currentUser} 
-                    onAddNotification={handleAddLocalNotification}
-                  />
-                )}
-              </div>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentUser.role}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -30 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="w-full"
+                >
+                  {currentUser.role === "STUDENT" && (
+                    <StudentDashboard 
+                      currentUser={currentUser} 
+                      onAddNotification={handleAddLocalNotification}
+                      onUserUpdate={setCurrentUser}
+                    />
+                  )}
+                  {currentUser.role === "COMPANY" && (
+                    <CompanyDashboard 
+                      currentUser={currentUser} 
+                      onAddNotification={handleAddLocalNotification}
+                    />
+                  )}
+                  {currentUser.role === "SCHOOL" && (
+                    <SchoolDashboard 
+                      currentUser={currentUser} 
+                      onAddNotification={handleAddLocalNotification}
+                    />
+                  )}
+                </motion.div>
+              </AnimatePresence>
             )}
           </>
         )}
