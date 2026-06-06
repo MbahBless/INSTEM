@@ -25,6 +25,7 @@ import {
   Palette
 } from "lucide-react";
 import { User, Notification, Internship } from "../types";
+import LechindemAvatar from "./LechindemAvatar";
 
 // Seed data for quick keyword matching of Academic Announcements
 const ACADEMIC_ANNOUNCEMENTS = [
@@ -581,6 +582,13 @@ export default function Navbar({
 
               {/* Profile button badge */}
               <div className="flex items-center gap-2 pl-2 border-l border-neutral-800">
+                {currentUser.role === "STUDENT" ? (
+                  <LechindemAvatar className="w-8 h-8" />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-neutral-900 border border-neutral-800 flex items-center justify-center text-neutral-400">
+                    <UserIcon className="w-4 h-4" />
+                  </div>
+                )}
                 <div className="hidden md:block text-right">
                   <p className="text-[11px] font-semibold text-white leading-none">{currentUser.name}</p>
                   <p className="text-[9px] text-neutral-500 font-mono leading-none mt-1">{currentUser.email}</p>

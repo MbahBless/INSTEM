@@ -106,7 +106,7 @@ export default function AuthModal({ onClose, onLoginSuccess, defaultRole = "STUD
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     className="w-full bg-black border border-neutral-800 rounded px-3 py-2 text-xs text-white focus:outline-none focus:border-yellow-500"
-                    placeholder="Alex Johnson"
+                    placeholder="Lechindem Mbah Bless"
                   />
                 </div>
               </div>
@@ -274,7 +274,7 @@ export default function AuthModal({ onClose, onLoginSuccess, defaultRole = "STUD
           {!isRegister && (
             <div className="mt-4 p-3 rounded bg-neutral-900 border border-neutral-800 text-[11px] text-neutral-400 leading-normal">
               <span className="text-yellow-500 font-semibold font-mono">Tip:</span> Ready-made preview users: <br />
-              <b className="text-white">student@instem.com</b> / <b className="text-white">password123</b> (Alex Johnson)<br />
+              <b className="text-white">student@instem.com</b> / <b className="text-white">password123</b> (Lechindem Mbah Bless)<br />
               <b className="text-white">company@instem.com</b> or <b className="text-white">admin@instem.com</b> with same password.
             </div>
           )}

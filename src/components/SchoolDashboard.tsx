@@ -75,9 +75,9 @@ export default function SchoolDashboard({ currentUser, onAddNotification }: Scho
         });
         if (userListResponse.ok) {
           const authData = await userListResponse.json();
-          // Synthesize dynamic lists with Alex Johnson and new signups
+          // Synthesize dynamic lists with Lechindem Mbah Bless and new signups
           setStudentUsers([
-            { id: "student_1", name: "Alex Johnson", email: "student@instem.com", department: "Software Engineering", studentId: "SE-2024-089" },
+            { id: "student_1", name: "Lechindem Mbah Bless", email: "student@instem.com", department: "Software Engineering", studentId: "SE-2024-089" },
             { id: "student_2", name: "Beatrice Akor", email: "beatrice@instem.com", department: "Information Security", studentId: "IS-2024-012" },
             { id: "student_3", name: "Cedric Fomi", email: "cedric@instem.com", department: "Data Science", studentId: "DS-2024-441" },
             { id: "student_4", name: "Diana Ngassa", email: "diana@instem.com", department: "Telecommunication Engineering", studentId: "TE-2024-006" }

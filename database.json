@@ -1,0 +1,149 @@
+{
+  "users": [
+    {
+      "id": "student_1",
+      "email": "student@instem.com",
+      "name": "Lechindem Mbah Bless",
+      "role": "STUDENT",
+      "passwordHash": "password123",
+      "department": "Software Engineering",
+      "studentId": "SE-2024-089",
+      "settings": {
+        "dataVisibility": "PUBLIC",
+        "emailFrequency": "DAILY",
+        "exportPreference": "PDF"
+      }
+    },
+    {
+      "id": "company_1",
+      "email": "company@instem.com",
+      "name": "Sarah Miller",
+      "role": "COMPANY",
+      "passwordHash": "password123",
+      "companyName": "Goldman Tech Solutions",
+      "settings": {
+        "dataVisibility": "PUBLIC",
+        "emailFrequency": "WEEKLY",
+        "exportPreference": "PDF"
+      }
+    },
+    {
+      "id": "school_1",
+      "email": "admin@instem.com",
+      "name": "Dr. Robert Carter",
+      "role": "SCHOOL",
+      "passwordHash": "password123",
+      "department": "School of Computing",
+      "settings": {
+        "dataVisibility": "RESTRICTED",
+        "emailFrequency": "DAILY",
+        "exportPreference": "PDF"
+      }
+    }
+  ],
+  "internships": [
+    {
+      "id": "internship_1",
+      "title": "Frontend Engineering Intern",
+      "companyId": "company_1",
+      "companyName": "Goldman Tech Solutions",
+      "location": "San Francisco, CA / Remote",
+      "type": "Remote",
+      "stipend": "$3,500/month",
+      "duration": "6 Months",
+      "description": "We are seeking a Frontend Developer Intern with React and Tailwind CSS skills. You will build user-facing features, work closely with designers, and learn production deployment flows.",
+      "requirements": [
+        "React knowledge",
+        "Tailwind CSS experience",
+        "Understanding of REST APIs",
+        "Git version control"
+      ],
+      "department": "Software Engineering",
+      "status": "OPEN",
+      "createdAt": "2026-05-15T08:00:00Z"
+    },
+    {
+      "id": "internship_2",
+      "title": "Full-Stack Developer Intern",
+      "companyId": "company_1",
+      "companyName": "Goldman Tech Solutions",
+      "location": "New York, NY",
+      "type": "Full-time",
+      "stipend": "$4,000/month",
+      "duration": "3 Months",
+      "description": "Join our Engineering squad to design high-throughput backend APIs and match them with delightful user dashboards. Exposure to Postgres/Prisma and Node.js.",
+      "requirements": [
+        "Node.js Basics",
+        "TypeScript",
+        "SQL foundations",
+        "Strong algorithms core"
+      ],
+      "department": "Software Engineering",
+      "status": "OPEN",
+      "createdAt": "2026-05-20T10:30:00Z"
+    },
+    {
+      "id": "internship_3",
+      "title": "Data Analytics Intern",
+      "companyId": "company_1",
+      "companyName": "Goldman Tech Solutions",
+      "location": "Austin, TX / Hybrid",
+      "type": "Remote",
+      "stipend": "$3,000/month",
+      "duration": "6 Months",
+      "description": "Turn sparse system telemetry and student activity logs into strategic dashboards. You will build visualization tables and export key database metrics.",
+      "requirements": [
+        "Python (Pandas)",
+        "SQL querying",
+        "Tableau/D3.js basics",
+        "Communication skills"
+      ],
+      "department": "Data Science",
+      "status": "OPEN",
+      "createdAt": "2026-05-28T14:15:00Z"
+    }
+  ],
+  "applications": [
+    {
+      "id": "app_1",
+      "internshipId": "internship_1",
+      "internshipTitle": "Frontend Engineering Intern",
+      "companyId": "company_1",
+      "companyName": "Goldman Tech Solutions",
+      "studentId": "student_1",
+      "studentName": "Lechindem Mbah Bless",
+      "studentEmail": "student@instem.com",
+      "studentDepartment": "Software Engineering",
+      "status": "ACCEPTED",
+      "appliedAt": "2026-05-16T09:00:00Z",
+      "coverLetter": "I have a strong drive for frontend development. I've designed several React apps and love crafting minimal CSS layouts with Gold highlights!"
+    }
+  ],
+  "reports": [
+    {
+      "id": "report_1",
+      "studentId": "student_1",
+      "studentName": "Lechindem Mbah Bless",
+      "companyId": "company_1",
+      "companyName": "Goldman Tech Solutions",
+      "title": "Week 2 Achievement & Code Structuring",
+      "content": "During my second week, I decoupled the state storage architecture by constructing modular React views. Added dynamic tables and formatted gold accents for interactive CTAs.",
+      "challenges": "Vite HMR was throwing websocket errors. Solved by refreshing development viewport layers manually.",
+      "hoursLogged": 40,
+      "submittedAt": "2026-05-30T16:00:00Z",
+      "status": "APPROVED",
+      "feedback": "Excellent work Lechindem. Your code structure is modular and typography alignments look clean! Keep it up.",
+      "grade": "A"
+    }
+  ],
+  "notifications": [
+    {
+      "id": "notif_1",
+      "userId": "student_1",
+      "title": "Application Status Update",
+      "message": "Your application for Frontend Engineering Intern has been ACCEPTED by Goldman Tech Solutions!",
+      "read": false,
+      "createdAt": "2026-05-17T14:30:00Z"
+    }
+  ]
+}

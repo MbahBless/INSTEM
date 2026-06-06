@@ -258,7 +258,7 @@ export default function PublicPages({ activeTab, onGetStarted, setActiveTab }: P
                   <div className="space-y-4">
                     <div className="p-3 bg-black rounded border border-neutral-900 flex justify-between items-center text-xs">
                       <div>
-                        <p className="font-semibold text-neutral-200">Alex Johnson (Student)</p>
+                        <p className="font-semibold text-neutral-200">Lechindem Mbah Bless (Student)</p>
                         <p className="text-neutral-500 text-[10px]">Submitted Progress Report 4</p>
                       </div>
                       <span className="text-yellow-500 text-[10px] font-mono">11 mins ago</span>

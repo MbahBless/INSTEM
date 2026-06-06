@@ -26,6 +26,7 @@ import UserSettingsPanel from "./UserSettingsPanel";
 import PremiumSubscription from "./PremiumSubscription";
 import PresiAiAssistant from "./PresiAiAssistant";
 import PresiAiDrawer from "./PresiAiDrawer";
+import LechindemAvatar from "./LechindemAvatar";
 
 interface StudentDashboardProps {
   currentUser: User;
@@ -272,16 +273,19 @@ export default function StudentDashboard({ currentUser, onAddNotification, onUse
       
       {/* Top Banner section */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-6 border-b border-neutral-900">
-        <div>
-          <span className="text-xs text-yellow-500 font-mono tracking-widest uppercase">
-            Active Workspace — {currentUser.department}
-          </span>
-          <h1 className="text-3xl font-display font-medium text-white tracking-tight mt-1">
-            Welcome Back, <span className="gold-text-gradient font-bold">{currentUser.name}</span>
-          </h1>
-          <p className="text-xs text-neutral-400 mt-0.5">
-            Student ID: <b className="text-white">{currentUser.studentId}</b>
-          </p>
+        <div className="flex items-center gap-4">
+          <LechindemAvatar className="w-16 h-16" />
+          <div>
+            <span className="text-xs text-yellow-500 font-mono tracking-widest uppercase">
+              Active Workspace — {currentUser.department}
+            </span>
+            <h1 className="text-3xl font-display font-medium text-white tracking-tight mt-0.5">
+              Welcome Back, <span className="gold-text-gradient font-bold">{currentUser.name}</span>
+            </h1>
+            <p className="text-xs text-neutral-400 mt-0.5">
+              Student ID: <b className="text-white">{currentUser.studentId}</b>
+            </p>
+          </div>
         </div>
 
         {/* Right Header Controls */}
